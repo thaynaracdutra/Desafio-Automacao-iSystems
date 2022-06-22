@@ -12,19 +12,14 @@ describe("automacao iSystems", () => {
 
   it("Produto deve estar incluso no carrinho", () => {
     cy.login("standard_user", "secret_sauce");
-    cy.get(
-      '[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]'
-    ).click();
+    cy.get('[data-test="add-to-cart-test.allthethings()-t-shirt-(red)"]').click();
 
     cy.contains(".shopping_cart_badge", 1).should("be.visible");
 
     cy.get(".shopping_cart_link").click();
 
     cy.location("pathname").should("eq", "/cart.html");
-    cy.contains(
-      ".inventory_item_name",
-      "Test.allTheThings() T-Shirt (Red)"
-    ).should("be.visible");
+    cy.contains(".inventory_item_name","Test.allTheThings() T-Shirt (Red)").should("be.visible");
   });
 
   it("Logout foi realizado", () => {
